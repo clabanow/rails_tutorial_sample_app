@@ -10,9 +10,9 @@ describe PagesController do
       response.should be_success
     end
 
-    it "should have the content 'Sample App'" do
+    it "should have the content 'Home'" do
       visit '/pages/home'
-      expect(page).to have_content('Sample App')
+      expect(page).to have_content('Home')
     end
 
   end
@@ -33,9 +33,9 @@ describe PagesController do
       response.should be_success
     end
 
-    it "should have the content 'About Us'" do
+    it "should have the content 'About'" do
       visit '/pages/about'
-      expect(page).to have_content('About Us')
+      expect(page).to have_content('About')
     end
 
   end
