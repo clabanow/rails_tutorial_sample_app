@@ -22,7 +22,7 @@ describe PagesController do
 
     it "should have a non-blank body" do
       visit '/pages/home'
-      response.body.should_not =~ //
+      response.body.should_not =~ /<body>\s*<\/body>/
     end
 
   end
