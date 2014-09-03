@@ -15,9 +15,9 @@ describe PagesController do
       expect(page).to have_content('Home')
     end
 
-    it "should have the word 'Home' in the title" do
+    it "should not have the word 'Home' in the title" do
       visit '/pages/home'
-      expect(page).to have_title('Home')
+      expect(page).not_to have_title('| Home')
     end
 
     it "should have a non-blank body" do
