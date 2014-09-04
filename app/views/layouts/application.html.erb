@@ -6,7 +6,6 @@
       	<script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
 	  <![endif]-->
 	  <%= stylesheet_link_tag    "screen", media: "screen" %>
-	  <%= stylesheet_link_tag    "print", media: "print" %>
 	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	  <%= csrf_meta_tags %>
@@ -15,22 +14,24 @@
 	</head>
 
 	<body>
-		<div class='container'>
-			<header>
-				<%= image_tag("logo.png", :alt => "Sample App", :class => 'round') %>
-				<nav class='round'>
-					<ul>
-						<li><%= link_to "Home", "#" %></li>
-						<li><%= link_to "Help", "#" %></li>
-						<li><%= link_to "Sign In", "#" %></li>
-					</ul>
-				</nav>
-			</header>
+		<header class='navbar navbar-fixed-top navbar-inverse'>
+			<div class='navbar-inner'>
+				<div class='container'>
+					<%= link_to "sample app", "#", id: "logo" %>
+					<nav class='round'>
+						<ul class='nav pull-right'>
+							<li><%= link_to "Home",    "#" %></li>
+							<li><%= link_to "Help",    "#" %></li>
+							<li><%= link_to "Sign In", "#" %></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
 
-			<section class='round'>
-				<%= yield %>
-			</section>
+		<div class='container'>
+			<%= yield %>
+		</div>
 			
-		</div
 	</body>
 </html>
