@@ -20,9 +20,7 @@ group :test do
   gem 'factory_girl_rails', '4.2.0'
 end
 
-group :production do
-	gem 'rails_12factor'
-end
+gem 'rails_12factor', group: :production
 
 gem 'sass-rails', '4.0.3'
 gem 'uglifier', '2.1.1'
