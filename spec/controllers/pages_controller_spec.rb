@@ -3,55 +3,43 @@ require 'spec_helper'
 describe PagesController do
   render_views
 
-  before(:each) do
-    @base_title = "Ruby on Rails Tutorial Sample App"
-  end
+  subject { page }
 
   describe "Home page" do
+    before { visit root_path }
 
-    it "returns http success" do
-      get 'home'
-      response.should be_success
-    end
-
-    it "should have the content 'Home'" do
-      visit '/pages/home'
-      expect(page).to have_content('Home')
-    end
-
-    it "should not have the word 'Home' in the title" do
-      visit '/pages/home'
-      expect(page).not_to have_title('| Home')
-    end
+    it { should have_content('Home') }
+    it { should have_title(get_full_title('')) }
+    it { should_not have_title('| Home') }
 
     it "should have a non-blank body" do
-      visit '/pages/home'
       response.body.should_not =~ /<body>\s*<\/body>/
     end
 
   end
 
   describe "Help page" do
-    
-    it "should have the content 'Help'" do
-      visit '/pages/help'
-      expect(page).to have_content('Help')
-    end
+    before { visit help_path }
+
+    it { should have_content('Help') }
+    it { should have_title(get_full_title('Help')) }
 
   end
 
   describe "About page" do
+    before { visit about_path }
 
-    it "returns http success" do
-      get 'about'
-      response.should be_success
-    end
+    it { should have_content('About') }
+    it { should have_title(get_full_title('About')) }
 
-    it "should have the content 'About'" do
-      visit '/pages/about'
-      expect(page).to have_content('About')
-    end
+  end
 
+  describe "Contact Page" do
+    before { visit contact_path }
+
+    it { should have_content('Contact') }
+    it { should have_title(get_full_title('Contact')) }
+    
   end
 
 end
