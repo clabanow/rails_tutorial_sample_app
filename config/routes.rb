@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+  # gives us all key RESTful functions
+  resources :users
  
   root 'pages#home'
   match '/signup',  to: 'users#new',     via: 'get'
