@@ -23,6 +23,22 @@ describe PagesController do
       response.body.should_not =~ /<body>\s*<\/body>/
     end
 
+    describe "for signed in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do 
+        FactoryGirl.create(:micropost, user: user, content: 'lorem ipsum')
+        FactoryGirl.create(:micropost, user: user, content: 'dolor sit amet')
+        sign_in user
+        visit root_path
+      end
+
+      it "should render the user's feed" do
+        user.feed.each do |item|
+          expect(page).to have_selector("li##{item.id}", text: item.content)
+        end
+      end
+    end
+
   end
 
   describe "Help page" do

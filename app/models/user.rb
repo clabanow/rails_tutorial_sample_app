@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :microposts, dependent: :destroy
+
 	before_save { self.email = email.downcase }
   before_create :create_remember_token
 
@@ -12,6 +14,12 @@ class User < ActiveRecord::Base
 
 	# this auto adds presence valiations for pw and its confirmation
 	has_secure_password
+
+  def feed
+    # the ? ensures that the id is properly escaped before being
+    # included in the underlying SQL query
+    Micropost.where("user_id = ?", id)
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
