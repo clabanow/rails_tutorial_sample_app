@@ -26,7 +26,7 @@ class MicropostsController < ApplicationController
 
     def correct_user
       # it's good practice to always run lookups through association
-      @micropost = current_user.microposts.find_by(params[:id])
+      @micropost = current_user.microposts.find_by(id: params[:id])
       redirect_to root_url if @micropost.nil?
     end
 end

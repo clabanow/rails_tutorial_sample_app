@@ -1,8 +1,20 @@
 SampleApp::Application.routes.draw do
   # gives us all key RESTful functions
-  resources :users
-  resources :sessions,   only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
+  resources :users do
+    # routes repond to urls containing the user id
+    member do
+      # these urls - users/1/following - will respond to GET requests
+      get :following, :followers
+    end
+
+    # this would respond to users/tigers
+    # collection do
+    #   get :tigers
+    # end
+  end
+  resources :sessions,      only: [:new, :create, :destroy]
+  resources :microposts,    only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
  
   root 'pages#home'
 
